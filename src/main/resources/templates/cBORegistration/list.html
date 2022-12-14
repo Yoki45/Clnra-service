@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{cBORegistration.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{cBORegistration.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/cBORegistrations/add}" th:text="#{cBORegistration.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${cBORegistrations.empty}" th:text="#{cBORegistration.list.empty}" />
+            <div th:if="${!cBORegistrations.empty}" class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th th:text="#{cBORegistration.id.label}" scope="col" />
+                            <th th:text="#{cBORegistration.cBOName.label}" scope="col" />
+                            <th th:text="#{cBORegistration.cBOID.label}" scope="col" />
+                            <th th:text="#{cBORegistration.country.label}" scope="col" />
+                            <th th:text="#{cBORegistration.cBORegistered.label}" scope="col" />
+                            <th th:text="#{cBORegistration.regNumber.label}" scope="col" />
+                            <th th:text="#{cBORegistration.approxPopulation.label}" scope="col" />
+                            <th th:text="#{cBORegistration.gPSLatitude.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="cBORegistration : ${cBORegistrations}">
+                            <td th:text="${cBORegistration.id}" />
+                            <td th:text="${cBORegistration.cBOName}" />
+                            <td th:text="${cBORegistration.cBOID}" />
+                            <td th:text="${cBORegistration.country}" />
+                            <td th:text="${cBORegistration.cBORegistered}" />
+                            <td th:text="${cBORegistration.regNumber}" />
+                            <td th:text="${cBORegistration.approxPopulation}" />
+                            <td th:text="${cBORegistration.gPSLatitude}" />
+                            <td>
+                                <form th:action="@{/cBORegistrations/delete/{id}(id=${cBORegistration.id})}" th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm float-end">
+                                    <a th:href="@{/cBORegistrations/edit/{id}(id=${cBORegistration.id})}" th:text="#{cBORegistration.list.edit}" class="btn btn-sm btn-info" />
+                                    <button th:text="#{cBORegistration.list.delete}" type="submit" class="btn btn-sm btn-danger" />
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

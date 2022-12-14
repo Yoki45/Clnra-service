@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{partners.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{partners.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/partnerss/add}" th:text="#{partners.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${partnerss.empty}" th:text="#{partners.list.empty}" />
+            <div th:if="${!partnerss.empty}" class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th th:text="#{partners.id.label}" scope="col" />
+                            <th th:text="#{partners.partnerName.label}" scope="col" />
+                            <th th:text="#{partners.partnerType.label}" scope="col" />
+                            <th th:text="#{partners.partnerEmail.label}" scope="col" />
+                            <th th:text="#{partners.cBOName.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="partners : ${partnerss}">
+                            <td th:text="${partners.id}" />
+                            <td th:text="${partners.partnerName}" />
+                            <td th:text="${partners.partnerType}" />
+                            <td th:text="${partners.partnerEmail}" />
+                            <td th:text="${partners.cBOName}" />
+                            <td>
+                                <form th:action="@{/partnerss/delete/{id}(id=${partners.id})}" th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm float-end">
+                                    <a th:href="@{/partnerss/edit/{id}(id=${partners.id})}" th:text="#{partners.list.edit}" class="btn btn-sm btn-info" />
+                                    <button th:text="#{partners.list.delete}" type="submit" class="btn btn-sm btn-danger" />
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

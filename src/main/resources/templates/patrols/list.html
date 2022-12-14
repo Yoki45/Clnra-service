@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{patrols.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{patrols.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/patrolss/add}" th:text="#{patrols.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${patrolss.empty}" th:text="#{patrols.list.empty}" />
+            <div th:if="${!patrolss.empty}" class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th th:text="#{patrols.id.label}" scope="col" />
+                            <th th:text="#{patrols.patrolsLog.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="patrols : ${patrolss}">
+                            <td th:text="${patrols.id}" />
+                            <td th:text="${patrols.patrolsLog}" />
+                            <td>
+                                <form th:action="@{/patrolss/delete/{id}(id=${patrols.id})}" th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm float-end">
+                                    <a th:href="@{/patrolss/edit/{id}(id=${patrols.id})}" th:text="#{patrols.list.edit}" class="btn btn-sm btn-info" />
+                                    <button th:text="#{patrols.list.delete}" type="submit" class="btn btn-sm btn-danger" />
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

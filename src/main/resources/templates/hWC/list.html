@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{hWC.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{hWC.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/hWCs/add}" th:text="#{hWC.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${hWCs.empty}" th:text="#{hWC.list.empty}" />
+            <div th:if="${!hWCs.empty}" class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th th:text="#{hWC.id.label}" scope="col" />
+                            <th th:text="#{hWC.hWCLog.label}" scope="col" />
+                            <th th:text="#{hWC.date.label}" scope="col" />
+                            <th th:text="#{hWC.problemSpecies.label}" scope="col" />
+                            <th th:text="#{hWC.placeIncident.label}" scope="col" />
+                            <th th:text="#{hWC.hWCType.label}" scope="col" />
+                            <th th:text="#{hWC.livestockKilled.label}" scope="col" />
+                            <th th:text="#{hWC.valueOfLivestock.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="hWC : ${hWCs}">
+                            <td th:text="${hWC.id}" />
+                            <td th:text="${hWC.hWCLog}" />
+                            <td th:text="${hWC.date}" />
+                            <td th:text="${hWC.problemSpecies}" />
+                            <td th:text="${hWC.placeIncident}" />
+                            <td th:text="${hWC.hWCType}" />
+                            <td th:text="${hWC.livestockKilled}" />
+                            <td th:text="${hWC.valueOfLivestock}" />
+                            <td>
+                                <form th:action="@{/hWCs/delete/{id}(id=${hWC.id})}" th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm float-end">
+                                    <a th:href="@{/hWCs/edit/{id}(id=${hWC.id})}" th:text="#{hWC.list.edit}" class="btn btn-sm btn-info" />
+                                    <button th:text="#{hWC.list.delete}" type="submit" class="btn btn-sm btn-danger" />
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

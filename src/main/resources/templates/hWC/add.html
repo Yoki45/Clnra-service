@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{hWC.add.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{hWC.add.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/hWCs}" th:text="#{hWC.add.back}" class="btn btn-secondary" />
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('hWC')}" />
+            <form th:action="${T(io.clnra.c_l_n_r_a.util.WebUtils).getRequest().requestURI}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='hWC', field='hWCLog')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='hWC', field='date')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='hWC', field='problemSpecies')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='hWC', field='placeIncident')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='hWC', field='hWCType')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='hWC', field='livestockKilled')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='hWC', field='valueOfLivestock')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='hWC', field='livestockImage')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='hWC', field='cropsDamaged')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='hWC', field='valueOfCrops')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='hWC', field='infrastructureValue')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='hWC', field='numberOfMales')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='hWC', field='numberOfFemale')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='hWC', field='damageConfirmed')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='hWC', field='reported')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='hWC', field='respondedBy')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='hWC', field='actionTaken')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='hWC', field='complainantName')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='hWC', field='addressComplainant')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='hWC', field='investigatedBy')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='hWC', field='comments')}" />
+                <input type="submit" th:value="#{hWC.add.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{hunting.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{hunting.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/huntings/add}" th:text="#{hunting.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${huntings.empty}" th:text="#{hunting.list.empty}" />
+            <div th:if="${!huntings.empty}" class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th th:text="#{hunting.id.label}" scope="col" />
+                            <th th:text="#{hunting.huntingLog.label}" scope="col" />
+                            <th th:text="#{hunting.animalName.label}" scope="col" />
+                            <th th:text="#{hunting.year.label}" scope="col" />
+                            <th th:text="#{hunting.allocatedQuota.label}" scope="col" />
+                            <th th:text="#{hunting.trophyFee.label}" scope="col" />
+                            <th th:text="#{hunting.numberHunted.label}" scope="col" />
+                            <th th:text="#{hunting.fixedQuota.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="hunting : ${huntings}">
+                            <td th:text="${hunting.id}" />
+                            <td th:text="${hunting.huntingLog}" />
+                            <td th:text="${hunting.animalName}" />
+                            <td th:text="${hunting.year}" />
+                            <td th:text="${hunting.allocatedQuota}" />
+                            <td th:text="${hunting.trophyFee}" />
+                            <td th:text="${hunting.numberHunted}" />
+                            <td th:text="${hunting.fixedQuota}" />
+                            <td>
+                                <form th:action="@{/huntings/delete/{id}(id=${hunting.id})}" th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm float-end">
+                                    <a th:href="@{/huntings/edit/{id}(id=${hunting.id})}" th:text="#{hunting.list.edit}" class="btn btn-sm btn-info" />
+                                    <button th:text="#{hunting.list.delete}" type="submit" class="btn btn-sm btn-danger" />
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

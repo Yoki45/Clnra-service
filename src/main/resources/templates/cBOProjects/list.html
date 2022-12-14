@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{cBOProjects.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{cBOProjects.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/cBOProjectss/add}" th:text="#{cBOProjects.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${cBOProjectss.empty}" th:text="#{cBOProjects.list.empty}" />
+            <div th:if="${!cBOProjectss.empty}" class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th th:text="#{cBOProjects.id.label}" scope="col" />
+                            <th th:text="#{cBOProjects.projectName.label}" scope="col" />
+                            <th th:text="#{cBOProjects.projectDuration.label}" scope="col" />
+                            <th th:text="#{cBOProjects.projectStartDate.label}" scope="col" />
+                            <th th:text="#{cBOProjects.projectValue.label}" scope="col" />
+                            <th th:text="#{cBOProjects.projectObjectives.label}" scope="col" />
+                            <th th:text="#{cBOProjects.fundingAgency.label}" scope="col" />
+                            <th th:text="#{cBOProjects.contactPerson.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="cBOProjects : ${cBOProjectss}">
+                            <td th:text="${cBOProjects.id}" />
+                            <td th:text="${cBOProjects.projectName}" />
+                            <td th:text="${cBOProjects.projectDuration}" />
+                            <td th:text="${cBOProjects.projectStartDate}" />
+                            <td th:text="${cBOProjects.projectValue}" />
+                            <td th:text="${cBOProjects.projectObjectives}" />
+                            <td th:text="${cBOProjects.fundingAgency}" />
+                            <td th:text="${cBOProjects.contactPerson}" />
+                            <td>
+                                <form th:action="@{/cBOProjectss/delete/{id}(id=${cBOProjects.id})}" th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm float-end">
+                                    <a th:href="@{/cBOProjectss/edit/{id}(id=${cBOProjects.id})}" th:text="#{cBOProjects.list.edit}" class="btn btn-sm btn-info" />
+                                    <button th:text="#{cBOProjects.list.delete}" type="submit" class="btn btn-sm btn-danger" />
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
