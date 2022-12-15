@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{cBORegistration.edit.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{cBORegistration.edit.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/cBORegistrations}" th:text="#{cBORegistration.edit.back}" class="btn btn-secondary" />
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('cBORegistration')}" />
+            <form th:action="${T(io.clnra.c_l_n_r_a.util.WebUtils).getRequest().requestURI}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='cBOName')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='cBOID')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='country')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='cBORegistered')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='regNumber')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='approxPopulation')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='cBOAddress', type='textarea')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='gPSLatitude')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='gPSLongitude')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='cBOContact')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='cBOConstitution')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='managements', type='multiselect')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='cBOPartnerss', type='multiselect')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='propertiess', type='multiselect')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='projects', type='multiselect')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='activitiess', type='multiselect')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='cBOHuntings', type='multiselect')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='wildlifePPs', type='multiselect')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='cBOTourisms', type='multiselect')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='humanConflicts', type='multiselect')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='aPs', type='multiselect')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='cSRCBOs', type='multiselect')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='cBOPatrolss', type='multiselect')}" />
+                <input type="submit" th:value="#{cBORegistration.edit.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>

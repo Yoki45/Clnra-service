@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{gameCount.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{gameCount.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/gameCounts/add}" th:text="#{gameCount.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${gameCounts.empty}" th:text="#{gameCount.list.empty}" />
+            <div th:if="${!gameCounts.empty}" class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th th:text="#{gameCount.id.label}" scope="col" />
+                            <th th:text="#{gameCount.gameCount.label}" scope="col" />
+                            <th th:text="#{gameCount.animalType.label}" scope="col" />
+                            <th th:text="#{gameCount.adultMale.label}" scope="col" />
+                            <th th:text="#{gameCount.adultFemale.label}" scope="col" />
+                            <th th:text="#{gameCount.subAdultMale.label}" scope="col" />
+                            <th th:text="#{gameCount.subadultFemale.label}" scope="col" />
+                            <th th:text="#{gameCount.juvenileMale.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="gameCount : ${gameCounts}">
+                            <td th:text="${gameCount.id}" />
+                            <td th:text="${gameCount.gameCount}" />
+                            <td th:text="${gameCount.animalType}" />
+                            <td th:text="${gameCount.adultMale}" />
+                            <td th:text="${gameCount.adultFemale}" />
+                            <td th:text="${gameCount.subAdultMale}" />
+                            <td th:text="${gameCount.subadultFemale}" />
+                            <td th:text="${gameCount.juvenileMale}" />
+                            <td>
+                                <form th:action="@{/gameCounts/delete/{id}(id=${gameCount.id})}" th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm float-end">
+                                    <a th:href="@{/gameCounts/edit/{id}(id=${gameCount.id})}" th:text="#{gameCount.list.edit}" class="btn btn-sm btn-info" />
+                                    <button th:text="#{gameCount.list.delete}" type="submit" class="btn btn-sm btn-danger" />
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

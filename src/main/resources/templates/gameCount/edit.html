@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{gameCount.edit.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{gameCount.edit.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/gameCounts}" th:text="#{gameCount.edit.back}" class="btn btn-secondary" />
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('gameCount')}" />
+            <form th:action="${T(io.clnra.c_l_n_r_a.util.WebUtils).getRequest().requestURI}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='gameCount', field='gameCount')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='gameCount', field='animalType')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='gameCount', field='adultMale')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='gameCount', field='adultFemale')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='gameCount', field='subAdultMale')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='gameCount', field='subadultFemale')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='gameCount', field='juvenileMale')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='gameCount', field='juvenileFemale')}" />
+                <input type="submit" th:value="#{gameCount.edit.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>

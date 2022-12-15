@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{cBOProperties.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{cBOProperties.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/cBOPropertiess/add}" th:text="#{cBOProperties.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${cBOPropertiess.empty}" th:text="#{cBOProperties.list.empty}" />
+            <div th:if="${!cBOPropertiess.empty}" class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th th:text="#{cBOProperties.id.label}" scope="col" />
+                            <th th:text="#{cBOProperties.propertyName.label}" scope="col" />
+                            <th th:text="#{cBOProperties.propertyType.label}" scope="col" />
+                            <th th:text="#{cBOProperties.location.label}" scope="col" />
+                            <th th:text="#{cBOProperties.propertyValue.label}" scope="col" />
+                            <th th:text="#{cBOProperties.registrationTag.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="cBOProperties : ${cBOPropertiess}">
+                            <td th:text="${cBOProperties.id}" />
+                            <td th:text="${cBOProperties.propertyName}" />
+                            <td th:text="${cBOProperties.propertyType}" />
+                            <td th:text="${cBOProperties.location}" />
+                            <td th:text="${cBOProperties.propertyValue}" />
+                            <td th:text="${cBOProperties.registrationTag}" />
+                            <td>
+                                <form th:action="@{/cBOPropertiess/delete/{id}(id=${cBOProperties.id})}" th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm float-end">
+                                    <a th:href="@{/cBOPropertiess/edit/{id}(id=${cBOProperties.id})}" th:text="#{cBOProperties.list.edit}" class="btn btn-sm btn-info" />
+                                    <button th:text="#{cBOProperties.list.delete}" type="submit" class="btn btn-sm btn-danger" />
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

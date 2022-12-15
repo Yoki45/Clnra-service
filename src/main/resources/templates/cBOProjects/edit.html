@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{cBOProjects.edit.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{cBOProjects.edit.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/cBOProjectss}" th:text="#{cBOProjects.edit.back}" class="btn btn-secondary" />
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('cBOProjects')}" />
+            <form th:action="${T(io.clnra.c_l_n_r_a.util.WebUtils).getRequest().requestURI}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='cBOProjects', field='projectName')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBOProjects', field='projectDuration')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBOProjects', field='projectStartDate')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBOProjects', field='projectValue')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBOProjects', field='projectObjectives')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBOProjects', field='fundingAgency')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='cBOProjects', field='contactPerson')}" />
+                <input type="submit" th:value="#{cBOProjects.edit.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>

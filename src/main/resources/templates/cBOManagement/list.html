@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{cBOManagement.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{cBOManagement.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/cBOManagements/add}" th:text="#{cBOManagement.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${cBOManagements.empty}" th:text="#{cBOManagement.list.empty}" />
+            <div th:if="${!cBOManagements.empty}" class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th th:text="#{cBOManagement.id.label}" scope="col" />
+                            <th th:text="#{cBOManagement.fullName.label}" scope="col" />
+                            <th th:text="#{cBOManagement.gender.label}" scope="col" />
+                            <th th:text="#{cBOManagement.cBOName.label}" scope="col" />
+                            <th th:text="#{cBOManagement.relationToCBO.label}" scope="col" />
+                            <th th:text="#{cBOManagement.yoB.label}" scope="col" />
+                            <th th:text="#{cBOManagement.phoneNumber.label}" scope="col" />
+                            <th th:text="#{cBOManagement.emailAddress.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="cBOManagement : ${cBOManagements}">
+                            <td th:text="${cBOManagement.id}" />
+                            <td th:text="${cBOManagement.fullName}" />
+                            <td th:text="${cBOManagement.gender}" />
+                            <td th:text="${cBOManagement.cBOName}" />
+                            <td th:text="${cBOManagement.relationToCBO}" />
+                            <td th:text="${cBOManagement.yoB}" />
+                            <td th:text="${cBOManagement.phoneNumber}" />
+                            <td th:text="${cBOManagement.emailAddress}" />
+                            <td>
+                                <form th:action="@{/cBOManagements/delete/{id}(id=${cBOManagement.id})}" th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm float-end">
+                                    <a th:href="@{/cBOManagements/edit/{id}(id=${cBOManagement.id})}" th:text="#{cBOManagement.list.edit}" class="btn btn-sm btn-info" />
+                                    <button th:text="#{cBOManagement.list.delete}" type="submit" class="btn btn-sm btn-danger" />
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

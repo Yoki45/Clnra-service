@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{cSR.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{cSR.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/cSRs/add}" th:text="#{cSR.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${cSRs.empty}" th:text="#{cSR.list.empty}" />
+            <div th:if="${!cSRs.empty}" class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th th:text="#{cSR.id.label}" scope="col" />
+                            <th th:text="#{cSR.cRSLog.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="cSR : ${cSRs}">
+                            <td th:text="${cSR.id}" />
+                            <td th:text="${cSR.cRSLog}" />
+                            <td>
+                                <form th:action="@{/cSRs/delete/{id}(id=${cSR.id})}" th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm float-end">
+                                    <a th:href="@{/cSRs/edit/{id}(id=${cSR.id})}" th:text="#{cSR.list.edit}" class="btn btn-sm btn-info" />
+                                    <button th:text="#{cSR.list.delete}" type="submit" class="btn btn-sm btn-danger" />
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
