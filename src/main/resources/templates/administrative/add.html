@@ -14,10 +14,46 @@
             </div>
             <div th:replace="~{fragments/forms::globalErrors('administrative')}" />
             <form th:action="${T(io.clnra.c_l_n_r_a.util.WebUtils).getRequest().requestURI}" method="post">
-                <div th:replace="~{fragments/forms::inputRow(object='administrative', field='country')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='administrative', field='countryCode')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='administrative', field='countryCurrency')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='administrative', field='currencyCode')}" />
+                <div>
+                    <label>Country</label>
+                    <select class="form-select" object='administrative', field="country">
+                        <option th:value="'Botswana'" th:text="Botswana"></option>
+                        <option th:value="'Malawi'" th:text="Malawi"></option>
+                        <option th:value="'Tanzania'" th:text="Tanzania"></option>
+                        <option th:value="'Zambia'" th:text="Zambia"></option>
+                        <option th:value="'Zimbabwe'" th:text="Zimbabwe"></option>
+                    </Select>
+                </div>
+                <div>
+                    <label>Country Code</label>
+                    <select class="form-select" object='administrative', field="countryCode">
+                        <option th:value="'267'" th:text="267"></option>
+                        <option th:value="'265'" th:text="265"></option>
+                        <option th:value="'255'" th:text="255"></option>
+                        <option th:value="'260'" th:text="260"></option>
+                        <option th:value="'263'" th:text="263"></option>
+                    </Select>
+                </div>
+                <div>
+                    <label>Currency</label>
+                    <select class="form-select" object='administrative', field="countryCurrency">
+                        <option th:value="'BotswanaPula'" th:text="BotswanaPula"></option>
+                        <option th:value="'MalawianKwacha'" th:text="MalawianKwacha"></option>
+                        <option th:value="'TanzanianShillings'" th:text="TanzanianShillings"></option>
+                        <option th:value="'ZambianKwacha'" th:text="ZambianKwacha"></option>
+                        <option th:value="'ZimbabweanDollar'" th:text="ZimbabweanDollar"></option>
+                    </Select>
+                </div>
+                <div>
+                    <label>Currency Code</label>
+                    <select class="form-select" object='administrative', field="currencyCode">
+                        <option th:value="'BWP'" th:text="BWP"></option>
+                        <option th:value="'MWK'" th:text="MWK"></option>
+                        <option th:value="'TZS'" th:text="TZS"></option>
+                        <option th:value="'ZMW'" th:text="ZMW"></option>
+                        <option th:value="'ZWL'" th:text="ZWL"></option>
+                    </Select>
+                </div>
                 <div th:replace="~{fragments/forms::inputRow(object='administrative', field='regionName')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='administrative', field='province')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='administrative', field='district')}" />
@@ -25,6 +61,7 @@
                 <div th:replace="~{fragments/forms::inputRow(object='administrative', field='ward')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='administrative', field='cBORegistration', type='select')}" />
                 <input type="submit" th:value="#{administrative.add.headline}" class="btn btn-primary mt-4" />
+
             </form>
         </div>
     </body>

@@ -16,7 +16,16 @@
             <form th:action="${T(io.clnra.c_l_n_r_a.util.WebUtils).getRequest().requestURI}" method="post">
                 <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='cBOName')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='cBOID')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='country')}" />
+                <div>
+                    <label>Country</label>
+                    <select class="form-select" object='cBORegistration', field="country">
+                        <option th:value="'Botswana'" th:text="Botswana"></option>
+                        <option th:value="'Malawi'" th:text="Malawi"></option>
+                        <option th:value="'Tanzania'" th:text="Tanzania"></option>
+                        <option th:value="'Zambia'" th:text="Zambia"></option>
+                        <option th:value="'Zimbabwe'" th:text="Zimbabwe"></option>
+                    </Select>
+                </div>
                 <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='cBORegistered')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='regNumber')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='cBORegistration', field='approxPopulation')}" />
